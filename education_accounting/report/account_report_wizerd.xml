@@ -1,0 +1,13 @@
+<odoo>
+
+    <report
+        id="account_wizerd_report"
+        model="napata.accounting"
+        string="Financial report"
+        name="napata_accounting.accountwizerd_report_templet"
+        report_type="qweb-pdf"
+        menu="False"
+    />
+
+
+</odoo>

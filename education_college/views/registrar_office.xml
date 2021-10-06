@@ -1,0 +1,241 @@
+<odoo>
+    <!--    form  to add college-->
+    <record model="ir.ui.view" id="education_student_registrar_tree_view">
+        <field name="name">student.registrar.tree</field>
+        <field name="model">student.registrar</field>
+        <field name="arch" type="xml">
+            <tree string="College tree">
+                <field name="name"/>
+                <field name="college_id"/>
+                <field name="program_id"/>
+                <field name="batch_id"/>
+                <field name="level_id"/>
+                <field name="semester_id"/>
+                <field name="type_acceptance"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="education_student_registrar_view_kanban" model="ir.ui.view">
+        <field name="name">student.registrar.kanban</field>
+        <field name="model">student.registrar</field>
+        <field name="arch" type="xml">
+            <kanban class="o_res_partner_kanban">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="program_id"/>
+                <field name="level_id"/>
+                <field name="form_number"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <img alt="Avatar"
+                                     t-att-src="kanban_image('student.registrar', 'image_1920',record.id.raw_value)"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title">
+                                    <field name="display_name"/>
+                                </strong>
+                                <div t-if="record.program_id.value">
+                                    <t t-esc="record.program_id.value"/>
+                                </div>
+                                <div t-if="record.level_id.value">
+                                    <t t-esc="record.level_id.value"/>
+                                </div>
+                                <div t-if="record.form_number.value">
+                                    <t t-esc="record.form_number.value"/>
+                                </div>
+
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <!--    -->
+
+    <record model="ir.ui.view" id="education_student_registrar_view_form">
+        <field name="name">student.registrar.form</field>
+        <field name="model">student.registrar</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <form string="Student Registrar">
+                <header>
+                    <!--                    -->
+
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object" name="open_studant_resulit
+"
+                                class="oe_stat_button" icon="fa-book">
+                        </button>
+                    </div>
+                    <!--                    -->
+
+                    <button class="oe_highlight" type="action"
+                            name="%(education_college.create_create_payment_wizard_action)d"
+                            context="{'default_student_id':active_id}" string="Make a Payment"
+                            confirm="Are you sure you want to  Make a payment?"/>
+                    <button class="oe_highlight" type="action"
+                            name="%(education_college.student_discounts_wizard_action)d"
+                            context="{'default_student_ids':active_id}" string="Make a Discount"
+                            confirm="Are you sure you want to do discounts?"/>
+
+                    <!--                    clinic-->
+                    <button name="send_student_clinic" string="Medical Examination" type="object" class="bg-danger"
+                            attrs="{'invisible': [('is_clinic', '=',True)]}"
+                            confirm="Are you sure you want to do medical examination?"/>
+
+                    <!-- Clinic -->
+
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" icon="fa-tasks" type="object" name="create_student_user"
+                                string="Parent Task"/>
+                        <button name="create_student_user" type="object" class="oe_stat_button" icon="fa-tasks"></button>
+
+                    </div>
+                    <group>
+                        <field name="data" readonly="1"/>
+                    </group>
+                    <field name="image_1920" widget="image" class="oe_avatar"
+                           options="{&quot;zoom&quot;: true, &quot;preview_image&quot;:&quot;image_128&quot;}"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Student's Name" required="True"  readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="year_stady"  readonly="1"/>
+                    </group>
+                    <group>
+                        <group col="4" colspan="2">
+                            <field name="program_id"  readonly="1"/>
+                            <field name="batch_id"  readonly="1"/>
+                            <field name="form_number"  readonly="1"/>
+                            <field name="level_id"/>
+                            <field name="semester_id"/>
+                            <field name="previous_result"/>
+                        </group>
+                        <group col="6" colspan="2">
+                            <field name="register_fees"/>
+                            <field name="study_fees"/>
+                            <field name="discount_fees"  readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="total_received"  readonly="1"/>
+                        </group>
+                    </group>
+
+                    <notebook colspan="4">
+                        <page name="Fees_information" string="Fees Collection Details">
+                        </page>
+
+                        <page name="personal_information"
+                              string="Personal Information">
+                            <group col="4" colspan="4" name="personal_detail">
+                                <field name="nationality_id" required="1"/>
+                                <field name="brath_day" required="1"/>
+                                <field name="type_of_id" required="1"/>
+                                <field name="id_number"/>
+                                <field name="gender"/>
+                                <field name="religion"/>
+                                <field name="social_status"/>
+                            </group>
+
+                            <group col="4" colspan="4" string="Contact Information">
+                                <field name="states"/>
+                                <field name="local"/>
+                                <field name="student_mobile"/>
+                                <field name="whatsapp_phone"/>
+                                <field name="email"/>
+                            </group>
+
+
+                            <group string="Applicant Information">
+                                <field name="applicant"/>
+                            </group>
+                            <group col="4" colspan="4">
+                                <field name="fother_address"/>
+                                <field name="telephone"/>
+                                <field name="relative_relation"/>
+                                <field name="job"/>
+                            </group>
+                        </page>
+                        <page name="educational" string="Educational">
+                            <group col="4" colspan="2">
+                                <field name="school_name"/>
+                                <field name="sitting_number"/>
+                                <field name="course"/>
+                                <field name="ratio"/>
+                                <field name="type_of_certificate"/>
+                                <field name="type_acceptance"/>
+                                <field name="accept_year"/>
+                            </group>
+                            <group col="4" colspan="2">
+                                <field name="national_card"/>
+                                <field name="school_certificate"/>
+                            </group>
+                        </page>
+                        <page string=" medical report">
+                            <group>
+                                <field name="is_clinic" readonly="1"/>
+                            </group>
+
+                            <group>
+                                <field name="doctor_comment" readonly="1"/>
+
+                            </group>
+                            <group col="4" colspan="2">
+                                <field name="result" readonly="1"/>
+
+                                <field name="result_data" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="doctor_name" readonly="1"/>
+                            </group>
+                        </page>
+
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="education_student_registrar_viwe_search" model="ir.ui.view">
+        <field name="name">student.registrar.search</field>
+        <field name="model">student.registrar</field>
+        <field name="arch" type="xml">
+            <search string="Student Registrar">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="education_student_registrar_list_action">
+        <field name="name">Student Registrar</field>
+        <field name="res_model">student.registrar</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the first College
+            </p>
+        </field>
+    </record>
+
+
+    <!--    -->
+
+
+    <!--    -->
+    <menuitem id="menu_registrar_office" name="Registrar's Office"
+              parent="menu_registrar_office_root"
+              action="education_student_registrar_list_action"
+              sequence="20"/>
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--Access Group Category-->
+        <record id="category_college" model="ir.module.category">
+            <field name="name"> Education </field>
+        </record>
+
+        <!--Group of Users-->
+        <record id="groups_college_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="category_college"/>
+        </record>
+        <!--Group of Users-->
+
+        <record id="groups_college_assistant" model="res.groups">
+            <field name="name">Assistant</field>
+            <field name="category_id" ref="category_college"/>
+        </record>
+
+<!--        Group of Managers-->
+        <record id="groups_college_admin" model="res.groups">
+            <field name="name">Admin</field>
+            <field name="category_id" ref="category_college"/>
+            <field name="implied_ids" eval="[(4, ref('groups_college_assistant'))]"/>
+        </record>
+
+        <!--Group of super manager-->
+        <record id="groups_college_system_admin" model="res.groups">
+            <field name="name">Super Admin</field>
+            <field name="category_id" ref="category_college"/>
+            <field name="implied_ids" eval="[(4, ref('groups_college_admin'))]"/>
+        </record>
+    </data>
+</odoo>

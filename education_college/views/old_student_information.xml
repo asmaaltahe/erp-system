@@ -1,0 +1,156 @@
+<odoo>
+    <data>
+        <!--    form  to add new student basic information-->
+        <record model="ir.ui.view" id="education_old_student_information_tree_view">
+            <field name="name">old.student.tree</field>
+            <field name="model">old.student</field>
+            <field name="arch" type="xml">
+                <tree string="old Student information tree">
+                    <field name="name"/>
+                    <field name="college_id"/>
+                    <field name="program_id"/>
+                    <field name="batch_id"/>
+                    <field name="form_number"/>
+                    <field name="old_accept_type"/>
+                    <field name="year_stady"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="education_old_student_information_view_form">
+            <field name="name">education.old.student.form</field>
+            <field name="model">old.student</field>
+            <field name="priority" eval="16"/>
+            <field name="arch" type="xml">
+                <form string="Basic Information">
+                    <header>
+                        <button name="confirm_action" type="object" states="draft" string="confirm"
+                                class="btn-primary"/>
+                        <button name="waiting_approve_action" states="confirm" type="object" string="Waiting Approve"
+                                class="btn-primary"/>
+                        <button name="done_action" type="object" states="waiting_approve" string="Done"
+                                class="btn-primary"/>
+                        <button name="cancel_acrion" type="object" states="confirm,waiting_approve" string="Cancel"
+                                class="oe_highligth"/>
+
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done,waiting_approve"/>
+                          <button class="oe_highlight" type="action" name="%(education_college.old_student)d"
+                        string="Print"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="data" readonly="1"/>
+                        </group>
+                        <field name="image_1920" widget="image" class="oe_avatar"
+                               options="{&quot;zoom&quot;: true, &quot;preview_image&quot;:&quot;image_128&quot;}"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Student's Name" required="True" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group col="4" colspan="2">
+                            <field name="college_id" readonly="1"/>
+                            <field name="program_id" readonly="1"/>
+                            <field name="batch_id" readonly="1"/>
+                            <field name="form_number" readonly="1"/>
+                            <field name="old_accept_type" readonly="1"/>
+                            <field name="year_stady" readonly="1"/>
+                        </group>
+                        <group col="4" colspan="4" name="Study_information" string="Study Information">
+                            <field name="school_name" readonly="1"/>
+                            <field name="course"/>
+                            <field name="sitting_number"/>
+                            <field name="ratio"/>
+                            <field name="type_of_certificate"/>
+                            <field name="certificate_level"/>
+
+                        </group>
+                        <group col="4" colspan="4" name="name" string="Personal Information">
+                            <field name="nationality_id"
+                                   options="{'no_create': True, 'no_quick_create': True, 'no_create_edit':True,'no_open': True}"/>
+                            <field name="type_of_id"/>
+                            <field name="id_number"/>
+                            <field name="gender"/>
+                            <field name="social_status"/>
+                            <field name="religion"/>
+                        </group>
+                        <group col="6" colspan="4">
+                            <field name="address"/>
+                            <field name="brath_day"/>
+<!--                            <field name="states"/>-->
+                            <field name="local"/>
+                            <field name="email"/>
+                            <field name="student_mobile" force_save="1"/>
+                            <field name="whatsapp_phone" force_save="1"/>
+                        </group>
+                        <group string="Attachments" colspan="2" col="4">
+                            <field name="certificate_completion" attrs="{'invisible':  ['&amp;',('old_accept_type','!=','bridging'),('old_accept_type','!=','degree_holder')]}"/>
+                            <field name="certificate_details"  attrs="{'invisible':  ['&amp;',('old_accept_type','!=','bridging'),('old_accept_type','!=','degree_holder')]}"/>
+                            <field name="certificate_other"  attrs="{'invisible':  ['&amp;',('old_accept_type','!=','bridging'),('old_accept_type','!=','degree_holder')]}"/>
+                            <field name="conduct_certificate"  attrs="{'invisible':  [('old_accept_type','!=','transfer')]}"/>
+                            <field name="academic_profile"  attrs="{'invisible':  [('old_accept_type','!=','transfer')]}"/>
+
+
+                        </group>
+                        <group string=" How did you hear about the college" col="6" colspan="2">
+                            <field name="facebook"/>
+                            <field name="website"/>
+                            <field name="newspaper"/>
+                            <field name="tv"/>
+                            <field name="radio"/>
+                            <field name="admission_book"/>
+                        </group>
+                        <group string="parent Information" col="4" colspan="2">
+                            <field name="applicant"/>
+                            <field name="job"/>
+                            <field name="relative_relation"/>
+                            <field name="fother_address"/>
+                            <field name="telephone"/>
+                        </group>
+
+                        <group>
+                            <field name="comm_old"/>
+                        </group>
+                        <group>
+                            <field name="user_id" readonly="1"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="education_old_student_information_viwe_search" model="ir.ui.view">
+            <field name="name">old.student.search</field>
+            <field name="model">old.student</field>
+            <field name="arch" type="xml">
+                <search string="Basic Information">
+                    <field name="name"/>
+                      <field name="name"/>
+                    <field name="college_id"/>
+                    <field name="program_id"/>
+                    <field name="batch_id"/>
+                    <field name="form_number"/>
+                    <field name="old_accept_type"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="education_old_student_information_list_action">
+            <field name="name">Basic Information</field>
+            <field name="res_model">old.student</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create the first old student information
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_old_students_basic_information" name="Degree Holder"
+                  parent="menu_basic_information_root"
+                  action="education_old_student_information_list_action"
+                  sequence="20"/>
+    </data>
+</odoo>

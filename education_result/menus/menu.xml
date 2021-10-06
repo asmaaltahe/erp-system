@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="education_menu_root" name="Scientific Affairs"/>
+
+        <menuitem id="education_menu_configuration_root" name="Configuration"
+                  parent="education_menu_root"
+                  sequence="100"/>
+        <menuitem id="education_subject_degrees_menu" name="Subject Degrees"
+                  parent="education_menu_root"
+                  sequence="10"/>
+
+ <menuitem id="education_average_calculation_menu" name="Average Calculation"
+                  parent="education_menu_root"
+                  sequence="20"/>
+
+    </data>
+</odoo>

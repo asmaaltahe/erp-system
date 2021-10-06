@@ -1,0 +1,171 @@
+<odoo>
+    <data>
+        <template id="accountwizerd_report_templet">
+            <t t-call="web.html_container">
+                <div class="header">
+                    <div class="text-center">
+                        <strong>تقرير مالي</strong>
+                    </div>
+
+                </div>
+
+                <h3 dir="rtl" class="text-center">
+                    <div style="padding-bttom:20px">
+                        <strong>التاريخ :</strong>
+                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/>
+                    </div>
+                    <br/>
+                    <t t-if="params == 'program'">
+                        <strong>البرنامج :</strong>
+                        <span t-esc="program_name"/>
+                    </t>
+                    <t t-if="params == 'studant'">
+                        <strong>اسم الطالب / الطالبة :</strong>
+                        <span t-esc="student_name"/>
+                    </t>
+
+                    <t t-if="params == 'program_level'">
+                        <strong>برنامج :</strong>
+                        <span t-esc="program_name" style="padding-left:80px"/>
+                        <strong>المستوي الدراسي :</strong>
+                        <span t-esc="level_name"/>
+
+                    </t>
+
+                    <t t-if="params == 'program_level_semester'">
+                        <strong>برنامج :</strong>
+                        <span t-esc="program_name" style="padding-left:80px"/>
+                        <strong>المستوي الدراسي :</strong>
+                        <span t-esc="level_name"/>
+                        <br/>
+                        <strong>الفصل الدراسي :</strong>
+                        <span t-esc="semeste_name"/>
+                    </t>
+
+                </h3>
+                <hr style="border-style:double"/>
+                <div class="page">
+                    <font style="font-family: 'Amiri', serif;">
+                        <table dir="rtl" class="table-bordered" style="border: 1px solid black; width: 100%">
+
+                            <thead style="background-color: #cfd3d3;">
+
+                                <t t-if="(params != 'studant')">
+                                    <th class="text-center" style="border: 1px solid black;">
+                                        <strong>
+                                            اسم الطالب
+                                        </strong>
+                                    </th>
+                                </t>
+                                <t t-if="(params != 'program' and params != 'program_level' and params != 'program_level_semester')">
+                                    <th class="text-center" style="border: 1px solid black;">
+                                        <strong>
+                                            البرنامج
+                                        </strong>
+                                    </th>
+                                </t>
+
+                                <t t-if="(params !='program_level' and params != 'program_level_semester')">
+                                    <th class="text-center" style="border: 1px solid black;">
+                                        <strong>
+                                            المستوي
+                                        </strong>
+                                    </th>
+                                </t>
+
+                                <t t-if="(params !='program_level_semester')">
+                                    <th class="text-center" style="border: 1px solid black;">
+                                        <strong>
+                                             الفصل الدراسي
+                                        </strong>
+                                    </th>
+                                </t>
+                                <th class="text-center" style="border: 1px solid black;">
+                                    <strong>
+                                        المبلغ
+                                    </strong>
+                                </th>
+                                <th class="text-center" style="border: 1px solid black;">
+                                    <strong>
+                                        عبارة عن
+                                    </strong>
+                                </th>
+                                <th class="text-center" style="border: 1px solid black;">
+                                    <strong>
+                                        رقم الايصال
+                                    </strong>
+                                    <th class="text-center" style="border: 1px solid black;">
+                                        <strong>
+                                            تاريخ الدفع
+                                        </strong>
+                                    </th>
+                                </th>
+                            </thead>
+
+                            <tbody>
+                                <t t-foreach="docs" t-as="o">
+                                    <tr>
+                                        <t t-if="(params != 'studant')">
+                                            <td style="border: 1px solid black; text-align: right;">
+                                                <span t-field="o.name"/>
+                                            </td>
+
+                                        </t>
+                                        <t t-if="(params != 'program' and params != 'program_level' and params != 'program_level_semester')">
+                                            <td style="border: 1px solid black; text-align: right;">
+                                                <span t-field="o.program"/>
+                                            </td>
+
+                                        </t>
+                                        <t t-if="(params !='program_level' and params != 'program_level_semester')">
+
+                                            <td style="border: 1px solid black; text-align: right;">
+                                                <span t-field="o.level"/>
+                                            </td>
+                                        </t>
+                                        <t t-if="(params !='program_level_semester')">
+
+                                            <td style="border: 1px solid black; text-align: right;">
+                                                <span t-field="o.semester"/>
+                                            </td>
+                                        </t>
+                                        <td style="border: 1px solid black; text-align: right;">
+                                            <span t-field="o.the_fees"/>
+                                        </td>
+                                        <td style="border: 1px solid black; text-align: right;">
+                                            <span t-field="o.about"/>
+                                        </td>
+                                        <td style="border: 1px solid black; text-align: right;">
+                                            <span t-field="o.receipt_code"/>
+                                        </td>
+                                        <td style="border: 1px solid black; text-align: right;">
+                                            <span t-field="o.year"/>
+                                        </td>
+
+
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <div>
+                            <div style="padding-top: 25px;">
+                                <b style="font-size:14px;width:50%;float:left;">
+                                    Print By :
+                                    <br>
+                                    </br>
+                                    Signiture : _____________________________
+                                </b>
+                            </div>
+                            <div>
+                                <b style="font-size:14px;width:50%;float:right;">
+                                    Print On :
+                                    <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%A %d-%B-%Y %H:%M:%S')"/>
+                                </b>
+                            </div>
+                        </div>
+                    </font>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

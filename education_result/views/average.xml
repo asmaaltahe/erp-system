@@ -1,0 +1,80 @@
+<odoo>
+
+    <record model="ir.ui.view" id="education_calculation_average_view_form">
+        <field name="name">calculation.average.form</field>
+        <field name="model">calculation.average</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <form string="Calculation ِAverage">
+                <sheet>
+                     <group>
+                            <field name="year" readonly="1" />
+                        </group>
+                    <group col="4" colspan="2">
+                        <field name="college_id"/>
+                        <field name="program_id"/>
+                        <field name="level_id"/>
+                        <field name="semester_id"/>
+                    </group>
+                     <field name="average_line" options="{'no_create': True, 'no_edit': True}" >
+                        <tree string="Purchase Order Lines">
+                            <field name="student_id" readonly="1" required="1" force_save="1" />
+                            <field name="hours" force_save="1" invisible="1"/>
+                            <field name="semester_average"/>
+                            <field name="cumulative_average"/>
+                            <field name="result"/>
+                            <field name="decision"/>
+                        </tree>
+                    </field>
+                     <group>
+                            <field name="user_id" readonly="1"/>
+                        </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="education_calculation_average_tree_view">
+        <field name="name">calculation.average.tree</field>
+        <field name="model">calculation.average</field>
+        <field name="arch" type="xml">
+            <tree string="calculation average tree">
+                <field name="college_id"/>
+                <field name="program_id"/>
+                <field name="level_id"/>
+                <field name="semester_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="education_calculation_average_search_view">
+        <field name="name">calculation.average.search</field>
+        <field name="model">calculation.average</field>
+        <field name="arch" type="xml">
+            <search string="subject tree">
+                <field name="program_id"/>
+                <field name="level_id"/>
+                <field name="semester_id"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="education_calculation_average_list_action">
+        <field name="name">calculation average</field>
+        <field name="res_model">calculation.average</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the first calculation average
+            </p>
+        </field>
+    </record>
+
+     <menuitem id="average_calculation_menu" name="The Average"
+                  parent="education_average_calculation_menu" sequence="20"
+                  action="education_calculation_average_list_action"/>
+</odoo>

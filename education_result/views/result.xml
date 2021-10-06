@@ -1,0 +1,82 @@
+<odoo>
+
+    <!-- startr tree viwe for pationt -->
+    <record model="ir.ui.view" id="result_collage_view_id">
+        <field name="name">napata.result.form</field>
+        <field name="model">subject.degree</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <form string="Education result">
+                  <header>
+                    <button name="contract_open" states="futur" type="object" string="Start Contract" class="oe_highlight" />
+                    <button name="contract_close" states="futur" type="object" string="Cancel" groups="fleet.fleet_group_manager"/>
+                    <button name="contract_close" states="open,expired,futur" type="object" class="oe_highlight" string="Close Contract" />
+                    <button name="contract_draft" states="closed" type="object" string="Reset To Draft" />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <group>
+                            <field name="year" readonly="1" />
+                        </group>
+                    <group col="4" colspan="2">
+                        <field name="college_id" required="1"/>
+                        <field name="program_id" required="1"/>
+                        <field name="level_id" required="1"/>
+                        <field name="semester_id" required="1"/>
+                        <field name="batch_id" required="1"/>
+                        <field name="Subject_id" required="1"/>
+                    </group>
+                    <field name="degree_line" options="{'no_create': True, 'no_edit': True}" >
+                        <tree string="Purchase Order Lines" editable="bottom"  decoration-danger="total &lt; 50" decoration-success="total &gt;= 50">
+                            <field name="student_id" readonly="1" required="1" force_save="1" />
+                            <field name="subject_id"/>
+                            <field name="exam_state"/>
+                            <field name="practical"/>
+                            <field name="theoretical"/>
+                            <field name="ass"/>
+                            <field name="final"/>
+                            <field name="total" readonly="1" force_save="1"/>
+                            <field name="grad" readonly="1" force_save="1"/>
+                        </tree>
+                    </field>
+                     <group>
+                            <field name="user_id" readonly="1"/>
+                        </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="result_tree_view">
+        <field name="name">subject.tree</field>
+        <field name="model">subject.degree</field>
+        <field name="arch" type="xml">
+            <tree string="subject tree">
+                <field name="college_id"/>
+                <field name="program_id"/>
+                <field name="level_id"/>
+                <field name="semester_id"/>
+                <field name="Subject_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="education_result_list_action">
+        <field name="name">result</field>
+        <field name="res_model">subject.degree</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the first result
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="education_result_menu" name="Add Subject Degrees"
+                  parent="education_subject_degrees_menu" sequence="10"
+                  action="education_result_list_action"/>
+</odoo>
