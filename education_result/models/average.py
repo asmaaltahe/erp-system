@@ -13,8 +13,29 @@ class CalculationAverage(models.Model):
     level_id = fields.Many2one('level.level', string=' level')
     semester_id = fields.Many2one('semester.semester', string='semester', domain="[('level_id','=',level_id)]")
     average_line = fields.One2many('line.average', 'average_id', string='Opportunities')
+    state = fields.Selection([('draft', 'Drift'),('confirm', 'Confirm'),('waiting_approve', ' Waiting Approval'),('approve', 'Approval'), ('done', 'Done')], 'Status', default='draft')
     year = fields.Char('Study Year', default=lambda self: datetime.datetime.now().year)
     user_id = fields.Many2one('res.users', 'Creant User ', default=lambda self: self.env.user)
+
+    def confirm_action(self):
+        for record in self:
+            record.state = 'confirm'
+
+    def waiting_approve_action(self):
+        for record in self:
+            record.state = 'waiting_approve'
+
+    def waiting_approve_action(self):
+        for record in self:
+            record.state = 'waiting_approve'
+
+    def done_action(self):
+        for record in self:
+            record.state = 'done'
+
+    def cancel_action(self):
+        for record in self:
+            record.state = 'draft'
 
 
     @api.onchange('semester_id')
@@ -28,29 +49,36 @@ class CalculationAverage(models.Model):
             hour= []
             total = []
 
-            if average :
-                        average_lin = average.mapped("average_line")
-                        for rec in studant_id:
-                            semester_average = average_lin.filtered(lambda r: r.student_id  == rec)
-                            subject_degree=subject_degree_line.filtered(lambda r: r.student_id  == rec)
-                            for lin in subject_degree:
-                                total.append(lin.total)
-                                mark.append(lin.subject_id.hours * lin.total)
-                                hour.append(lin.subject_id.hours)
-                                cumulative_average =round((sum(mark) / sum(hour) / 25), 2)
+            if average:
+                    chack_date = self.env['calculation.average'].search(
+                        [('college_id', '=', self.college_id.id), ('program_id', '=', self.program_id.id),
+                         ('level_id', '=', self.level_id.id), ('semester_id', '=', self.semester_id.id),
+                         ('year', '=', self.year)], limit=1)
+                    if chack_date:
+                        raise ValidationError(_('The result of this semester has already been entered.'))
+                    else:
+                                average_lin = average.mapped("average_line")
+                                for rec in studant_id:
+                                    semester_average = average_lin.filtered(lambda r: r.student_id  == rec)
+                                    subject_degree=subject_degree_line.filtered(lambda r: r.student_id  == rec)
+                                    for lin in subject_degree:
+                                        total.append(lin.total)
+                                        mark.append(lin.subject_id.hours * lin.total)
+                                        hour.append(lin.subject_id.hours)
+                                        cumulative_average =round((sum(mark) / sum(hour) / 25), 2)
 
-                            result= ((semester_average.semester_average * semester_average.hours) + (cumulative_average * sum(hour))) / (semester_average.hours + sum(hour))
-                            self.write({'average_line': [(0, 0, {
-                                'student_id': line.id,
-                                'semester_average': semester_average.semester_average,
-                                'cumulative_average': cumulative_average,
-                                'result': result,
-                                'decision': 'pass',
+                                    result= ((semester_average.semester_average * semester_average.hours) + (cumulative_average * sum(hour))) / (semester_average.hours + sum(hour))
+                                    self.write({'average_line': [(0, 0, {
+                                        'student_id': line.id,
+                                        'semester_average': semester_average.semester_average,
+                                        'cumulative_average': cumulative_average,
+                                        'result': result,
+                                        'decision': 'pass',
 
-                            }) for line in rec]})
-                            mark.clear()
-                            total.clear()
-                            hour.clear()
+                                    }) for line in rec]})
+                                    mark.clear()
+                                    total.clear()
+                                    hour.clear()
             else:
                 for rec in studant_id:
                         subjects = subject_degree_line.filtered(lambda r: r.student_id  == rec)
@@ -67,6 +95,7 @@ class CalculationAverage(models.Model):
                         mark.clear()
                         total.clear()
                         hour.clear()
+
 
 
 

@@ -6,6 +6,13 @@
         <field name="priority" eval="16"/>
         <field name="arch" type="xml">
             <form string="Calculation ِAverage">
+                 <header>
+                        <button name="confirm_action" type="object"  states="draft" string="confirm" class="btn-primary"/>
+                        <button name="waiting_approve_action" states="confirm"  type="object"  string="Waiting Approve"  class="btn-primary"/>
+                        <button name="done_action" type="object"  states="waiting_approve"  string="Done"  class="btn-primary"/>
+                        <button name="cancel_action" type="object"  states="confirm,waiting_approve"  string="Cancel" class="oe_highligth"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done,waiting_approve"/>
+                    </header>
                 <sheet>
                      <group>
                             <field name="year" readonly="1" />
@@ -23,6 +30,8 @@
                             <field name="semester_average"/>
                             <field name="cumulative_average"/>
                             <field name="result"/>
+<!--                            <field name="supp"/>-->
+<!--                            <field name="sub"/>-->
                             <field name="decision"/>
                         </tree>
                     </field>

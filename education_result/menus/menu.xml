@@ -11,9 +11,12 @@
                   parent="education_menu_root"
                   sequence="10"/>
 
- <menuitem id="education_average_calculation_menu" name="Average Calculation"
+        <menuitem id="education_average_calculation_menu" name="Average Calculation"
                   parent="education_menu_root"
                   sequence="20"/>
+        <menuitem id="education_sublect_handlining_menu" name="Subject Handling"
+                  parent="education_menu_root"
+                  sequence="30"/>
 
     </data>
 </odoo>

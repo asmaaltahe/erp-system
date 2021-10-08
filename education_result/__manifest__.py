@@ -33,6 +33,8 @@
         'views/subject.xml',
         'views/result.xml',
         'views/average.xml',
+        'views/subject_handling.xml',
+        'views/processing_degree.xml',
 
     ],
     # only loaded in demonstration mode
