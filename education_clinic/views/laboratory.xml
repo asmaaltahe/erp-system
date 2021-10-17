@@ -1,0 +1,178 @@
+<odoo>
+
+  <!-- startr tree viwe for lap -->
+<record model="ir.ui.view" id="laboratory_view_id">
+    <field name="name">education.laboratory.form</field>
+    <field name="model">education.laboratory</field>
+    <field name="priority" eval="16"/>
+    <field name="arch" type="xml">
+    <form string="Student Health Service" create="false">
+
+        <header>
+
+              <button  class="oe_highlight" type="action" name="%(education_clinic.report_laboratory)d"
+                        string="Print"/>
+        </header>
+
+        <sheet>
+
+            <!--       header     -->
+            <div class="row navbar navbar-expand-sm  navbar-dark" style="border-radius: 10px;
+                               background-color: #187ebf;   color: white;">
+                <div class="col-sm">
+                    <img src="napata_register/static/description/logo.jpeg" class="img-thumbnail"
+                                 style="height:80px;width:120px"/>
+                </div>
+
+                <div class="col-sm   text-center">
+                    <h1>
+                        <p>
+                            <spane>كليــــــــــــــــة نبتـــــــــة</spane>
+                            <br/>
+                            <spane>NAPATA COLLEGE</spane>
+                        </p>
+                    </h1>
+                </div>
+                <div class="col-sm" style="  text-align:right">
+                    <h3>
+                        <p style="color: white; text-align: left;margin-left: 116px;">
+                            <spane>Alreydh-Khartoum/Sudan</spane>
+                            <br/>
+                            <spane>Tel :+249112203333</spane>
+                            <br/>
+                            <spane>Email:info@napata.net</spane>
+                            <br/>
+                            <spane>www:napata.net</spane>
+                        </p>
+                    </h3>
+                </div>
+            </div>
+            <div class="text-center" style="padding-bottom: 35px; padding-top: 40px;     color: black;">
+                <h2>
+                    <span>Medical Examination</span>
+
+                </h2>
+            </div>
+                  
+
+
+                    <!--            header-->
+
+            <group col="4" colspan="2">
+                <field name="date"/>
+                <field name="patient_id"/>
+            </group>
+
+           <group string="Student Information ">
+               <table style="margin-left:160px;">
+                   <tr>
+                       <td style="padding-right:10px;">
+                           <field name="name"/>
+                       </td>
+                   </tr>
+               </table>
+           </group>
+
+                        <group colspan="7" col="4" name="main">
+                            <field name="email"/>
+                            <field name="gender"/>
+                            <field name="phone" />
+                            <field name="nationality"/>
+                            <field name="religion"/>
+                            <field name="program"/>
+                            <field name="dob"/>
+                         </group>
+
+            <notebook>
+                <page string="Microscopical Examination">
+
+            <group string="Urine General" colspan="5" col="4" >
+                <field name="color"/>
+                <field name="reaction"/>
+                <field name="glucose"/>
+                <field name="protein"/>
+                <field name="ketones"/>
+            </group>
+
+            <group   colspan="6" col="4" >
+                <field name="pus"/>
+                <field name="rbs"/>
+                <field name="epithel"/>
+                <field name="casts"/>
+                <field name="crystals"/>
+                <field name="other"/>
+            </group>
+
+                </page>
+
+                <page  string="Blood">
+                    <group colspan="3" col="6">
+                <field name="hbv"/>
+                <field name="hcv"/>
+                <field name="hiv"/>
+                    </group>
+
+            <group colspan="4" col="4">
+                <field name="hb"/>
+                <field name="ho"/>
+            </group>
+
+            <group colspan="3" col="4" >
+                <field name="Blood_g"/>
+                <field name="investig"/>
+                <field name="addiction"/>
+            </group>
+
+            <group colspan="2" col="4" >
+                <field name="recommend"/>
+                <field name="date_two"/>
+            </group>
+
+            <group>
+                <field name="physician"/>
+            </group>
+                </page>
+
+                        <page string="Doctor Results">
+
+            <group col="2">
+                <field name="assessment"/>
+                <field name="diagonis"/>
+            </group>
+
+            <group col="2">
+                <field name="name_of" readonly="1"/>
+            </group>
+                        </page>
+              </notebook>
+
+
+         </sheet>
+    </form>
+    </field>
+</record>
+     <!-- start form viwe from lap Info -->
+  <record model="ir.ui.view" id="laboratory_tree_view">
+            <field name="name">laboratory.tree</field>
+            <field name="model">education.laboratory</field>
+            <field name="arch" type="xml">
+            <tree string="Patient tree">
+                <field name="name"/>
+                <field name="program"/>
+                <field name="dob"/>
+                <field name="phone"/>
+                </tree>
+            </field>
+    </record>
+<!-- end of form viwe from lab Info -->
+
+      <record model="ir.actions.act_window" id="laboratory_list_action">
+            <field name="name">Laboratory</field>
+            <field name="res_model">education.laboratory</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create the first patient
+                </p>
+            </field>
+        </record>
+</odoo>

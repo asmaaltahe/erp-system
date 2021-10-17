@@ -1,0 +1,33 @@
+<odoo>
+
+    <report
+        id="report_physical"
+        model="education.physical"
+        string="Medical Report"
+        name="education_clinic.delivering_financial_template_physical"
+        file="clinic.physical_report"
+        report_type="qweb-pdf"
+         menu="False"
+    />
+
+<!-- The Laboratory-->
+    <report
+        id="report_laboratory"
+        model="education.laboratory"
+        string="Medical Report"
+        name="education_clinic.delivering_financial_template_laboratory"
+        file="clinic.laboratory_report"
+        report_type="qweb-pdf"
+         menu="False"
+    />
+    <!-- The Eye-->
+    <report
+        id="report_eye"
+        model="education.eye"
+        string="Medical Report"
+        name="education_clinic.delivering_financial_template_eye"
+        file="clinic.eye_report"
+        report_type="qweb-pdf"
+         menu="False"
+    />
+</odoo>

@@ -1,0 +1,123 @@
+<odoo>
+    <!-- startr tree viwe for nursing -->
+    <record model="ir.ui.view" id="eye_clinic_view_id">
+        <field name="name">education.nursing.form</field>
+        <field name="model">education.eye</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <form string="Student Health Service" create="false">
+
+                <header>
+
+                      <button  class="oe_highlight" type="action" name="%(education_clinic.report_eye)d"
+                        string="Print"/>
+                </header>
+                <sheet>
+                    <!--  -->
+                    <div class="row navbar navbar-expand-sm  navbar-dark"
+                         style="border-radius: 10px; background-color: #187ebf;   color: white;">
+                        <div class="col-sm">
+                            <img src="napata_register/static/description/logo.jpeg" class="img-thumbnail"
+                                 style="height:80px;width:120px"/>
+                        </div>
+                        <div class="col-sm   text-center">
+                            <h1>
+                                <p>
+                                    <spane>كليــــــــــــــــة نبتـــــــــة</spane>
+                                    <br/>
+                                    <spane>NAPATA COLLEGE</spane>
+                                </p>
+                            </h1>
+                        </div>
+                        <div class="col-sm" style="  text-align:right">
+                            <h3>
+                                <p style="color: white; text-align: left;margin-left: 116px;">
+                                    <spane>Alreydh-Khartoum/Sudan</spane>
+                                    <br/>
+                                    <spane>Tel :+249112203333</spane>
+                                    <br/>
+                                    <spane>Email:info@napata.net</spane>
+                                    <br/>
+                                    <spane>www:napata.net</spane>
+                                </p>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="text-center" style="padding-bottom: 35px; padding-top: 40px;     color: black;">
+                        <h2>
+                            <span>Medical Examination</span>
+                        </h2>
+                    </div>
+                    <group col="4" colspan="2">
+                        <field name="date" readonly="1"/>
+                        <field name="patient_id" placeholder="Patient ID" readonly="1"/>
+                    </group>
+                    <group string="Student Information">
+                        <table style="margin-left:160px;">
+                            <tr>
+                                <td style="padding-right:10px;">
+                                    <field name="name"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </group>
+                    <group colspan="8" col="4" name="main">
+                        <field name="email" readonly="1"/>
+                        <field name="gender" readonly="1"/>
+                        <field name="nationality" readonly="1"/>
+                        <field name="phone" readonly="1"/>
+                        <field name="religion" readonly="1"/>
+                        <field name="program" readonly="1" />
+                        <field name="address" readonly="1"/>
+                        <field name="brath_day" readonly="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Past Medical History">
+                            <group string="Diseases" colspan="8" col="4">
+                                <field name="general"/>
+                                <field name="withoutglss"/>
+                                <field name="withglasses"/>
+                                <field name="color"/>
+                                <field name="near"/>
+                            </group>
+                        </page>
+                        <page string="Doctor Results">
+                            <group col="2">
+                                <field name="assessment"/>
+                                <field name="diagonis"/>
+                            </group>
+
+                            <group name="main">
+                            <field name="opthahmologist" readonly="1"/>
+                            </group>
+
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- start form viwe from nursing Info -->
+    <record model="ir.ui.view" id="eye_clinic_tree_view">
+        <field name="name">Clinic.tree</field>
+        <field name="model">education.eye</field>
+        <field name="arch" type="xml">
+            <tree string="eye tree">
+                <field name="name"/>
+                <field name="program"/>
+                <field name="brath_day"/>
+                <field name="phone"/>
+            </tree>
+        </field>
+    </record>
+    <!-- end of form viwe from lab Info -->
+    <record model="ir.actions.act_window" id="eye_list_action">
+        <field name="name">Optical Clinic</field>
+        <field name="res_model">education.eye</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the first optical clinic
+            </p>
+        </field>
+    </record>
+</odoo>

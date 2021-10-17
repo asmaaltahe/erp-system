@@ -56,35 +56,56 @@
                             <field name="type_acceptance" attrs="{'readonly':[('state','!=','draft')]}"  readonly="1" />
                             <field name="year_stady" attrs="{'readonly':[('state','!=','draft')]}"  readonly="1" />
                         </group>
-                        <group col="4" colspan="4" name="Study_information" string="Study Information">
-                            <field name="school_name" attrs="{'readonly':[('state','!=','draft')]}"   readonly="1"/>
-                            <field name="course" attrs="{'readonly':[('state','!=','draft')]}"  />
-                            <field name="sitting_number" attrs="{'readonly':[('state','!=','draft')]}"  />
-                            <field name="ratio" attrs="{'readonly':[('state','!=','draft')]}"  />
-                            <field name="type_of_certificate" attrs="{'readonly':[('state','!=','draft')]}"  />
+
+                         <group col="4" colspan="4" name="Study_information" string="Study Information">
+                            <field name="school_name" readonly="1"/>
+                            <field name="course"
+                                   attrs="{'required':[('state','=','draft')],'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
+                            <field name="sitting_number"
+                                   attrs="{'required':[('state','=','draft')],'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
+                            <field name="ratio"
+                                   attrs="{'required':[('state','=','draft')],'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
+                            <field name="type_of_certificate"
+                                   attrs="{'required':[('state','=','draft')],'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
 
                         </group>
                         <group col="4" colspan="4" name="name" string="Personal Information">
-                            <field name="nationality_id" attrs="{'readonly':[('state','!=','draft')]}"  
-                                   options="{'no_create': True, 'no_quick_create': True, 'no_create_edit':True,'no_open': True}" />
-                            <field name="type_of_id" attrs="{'readonly':[('state','!=','draft')]}"  />
-                            <field name="id_number" attrs="{'readonly':[('state','!=','draft')]}"  />
-                            <field name="gender" attrs="{'readonly':[('state','!=','draft')]}"  />
-                            <field name="social_status" attrs="{'readonly':[('state','!=','draft')]}"  />
-                            <field name="religion" attrs="{'readonly':[('state','!=','draft')]}"  />
+                            <field name="nationality_id"
+                                   options="{'no_create': True, 'no_quick_create': True, 'no_create_edit':True,'no_open': True}"
+                                   attrs="{'required':[('state','=','draft')],'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
+                            <field name="type_of_id"
+                                   attrs="{'required':[('state','=','draft')],'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
+                            <field name="id_number"
+                                   attrs="{'required':[('state','=','draft')],'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
+                            <field name="gender"
+                                   attrs="{'required':[('state','=','draft')],'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
+                            <field name="social_status"
+                                   attrs="{'required':[('state','=','draft')],'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
+                            <field name="religion"
+                                   attrs="{'required':[('state','=','draft')],'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
                         </group>
                         <group col="6" colspan="4">
-                            <field name="address" attrs="{'readonly':[('state','!=','draft')]}"  />
-                            <field name="brath_day" attrs="{'readonly':[('state','!=','draft')]}"  />
-                            <field name="student_states" attrs="{'readonly':[('state','!=','draft')]}"  />
-                            <field name="local" attrs="{'readonly':[('state','!=','draft')]}"  />
-                            <field name="email" attrs="{'readonly':[('state','!=','draft')]}"  />
-                            <field name="student_mobile" force_save="1" attrs="{'readonly':[('state','!=','draft')]}"  />
-                            <field name="whatsapp_phone" force_save="1" attrs="{'readonly':[('state','!=','draft')]}"  />
+                            <field name="address"
+                                   attrs="{'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
+                            <field name="brath_day"
+                                   attrs="{'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
+                            <field name="student_states"
+                                   attrs="{'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
+                            <field name="local"
+                                   attrs="{'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
+                            <field name="email"
+                                   attrs="{'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
+                            <field name="student_mobile"
+                                   attrs="{'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
+                            <field name="whatsapp_phone"
+                                   attrs="{'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
                         </group>
+
                         <group string="Attachments" colspan="2" col="4">
-                            <field name="national_card" attrs="{'readonly':[('state','!=','draft')]}"  />
-                            <field name="school_certificate" attrs="{'readonly':[('state','!=','draft')]}"  />
+                            <field name="national_card"
+                                   attrs="{'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
+                            <field name="school_certificate"
+                                   attrs="{'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
                         </group>
                         <group string=" How did you hear about the college" col="6" colspan="2">
                             <field name="facebook"/>
@@ -94,12 +115,17 @@
                             <field name="radio"/>
                             <field name="admission_book"/>
                         </group>
-                        <group string="parent Information" col="4" colspan="2">
-                            <field name="applicant" attrs="{'readonly':[('state','!=','draft')]}"  />
-                            <field name="job" attrs="{'readonly':[('state','!=','draft')]}"  />
-                            <field name="relative_relation" attrs="{'readonly':[('state','!=','draft')]}"  />
-                            <field name="fother_address" attrs="{'readonly':[('state','!=','draft')]}"  />
-                            <field name="telephone" attrs="{'readonly':[('state','!=','draft')]}"  />
+                        <group string="Parent Information" col="4" colspan="2">
+                            <field name="applicant"
+                                   attrs="{'required':[('state','=','draft')],'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
+                            <field name="job"
+                                   attrs="{'required':[('state','=','draft')],'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
+                            <field name="relative_relation"
+                                   attrs="{'required':[('state','=','draft')],'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
+                            <field name="fother_address"
+                                   attrs="{'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
+                            <field name="telephone"
+                                   attrs="{'readonly':[('state','in',['confirm','waiting_approve','done'])]}"/>
                         </group>
                         <group>
                             <field name="comm_new"/>

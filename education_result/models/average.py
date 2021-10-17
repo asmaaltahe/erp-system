@@ -46,7 +46,7 @@ class CalculationAverage(models.Model):
             subject_degree_line =subject_degree.mapped("degree_line")
             studant_id = subject_degree_line.mapped("student_id")
             mark = []
-            hour= []
+            hour = []
             total = []
 
             if average:
@@ -60,14 +60,14 @@ class CalculationAverage(models.Model):
                                 average_lin = average.mapped("average_line")
                                 for rec in studant_id:
                                     semester_average = average_lin.filtered(lambda r: r.student_id  == rec)
-                                    subject_degree=subject_degree_line.filtered(lambda r: r.student_id  == rec)
-                                    for lin in subject_degree:
-                                        total.append(lin.total)
-                                        mark.append(lin.subject_id.hours * lin.total)
-                                        hour.append(lin.subject_id.hours)
-                                        cumulative_average =round((sum(mark) / sum(hour) / 25), 2)
+                                    subject_degree = subject_degree_line.filtered(lambda r: r.student_id  == rec)
+                                for lin in subject_degree:
+                                    total.append(lin.total)
+                                    mark.append(lin.subject_id.hours * lin.total)
+                                    hour.append(lin.subject_id.hours)
+                                    cumulative_average = round((sum(mark)) / (sum(hour))/25,2)
 
-                                    result= ((semester_average.semester_average * semester_average.hours) + (cumulative_average * sum(hour))) / (semester_average.hours + sum(hour))
+                                    result = ((semester_average.semester_average * semester_average.hours) + (cumulative_average * sum(hour))) / (semester_average.hours + sum(hour))
                                     self.write({'average_line': [(0, 0, {
                                         'student_id': line.id,
                                         'semester_average': semester_average.semester_average,

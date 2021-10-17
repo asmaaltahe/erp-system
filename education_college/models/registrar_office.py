@@ -7,7 +7,12 @@ class RegistrarOffices(models.Model):
     _name = 'student.registrar'
     _description = 'student registrar office'
 
-    name = fields.Char(string="Full Name")
+    name = fields.Char(string="Full Name", readonly=True)
+    first_name = fields.Char(string='First Name')
+    second_name = fields.Char(string='Second Name')
+    third_name = fields.Char(string='Third Name')
+    forth_name = fields.Char(string='Fourth Name')
+
     image_1920 = fields.Binary('image_1920')
     college_id = fields.Many2one("college.college", ondelete="cascade", string="College")
     program_id = fields.Many2one("program.program", ondelete="cascade", string="Program")
@@ -22,7 +27,7 @@ class RegistrarOffices(models.Model):
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')], string="Gender")
     religion = fields.Selection([('muslim', 'Muslim'), ('christian', 'Christian '), ('other', 'Other')], string="Religion")
     social_status = fields.Selection([('married', 'Married'), ('single', 'Single '), ('other', 'Other')], string="Social Status")
-    brath_day = fields.Date(string="Barth Day")
+    brath_day = fields.Date(string="Birth Date")
     states = fields.Char(string="State")
     local = fields.Char(straing='Local')
     student_mobile = fields.Char(string="Mobile Number")
@@ -57,10 +62,12 @@ class RegistrarOffices(models.Model):
     user_id = fields.Many2one('res.users', 'Creant User ',  default=lambda self: self.env.user)
     is_clinic = fields.Boolean(string="Is Clinic Book")
     is_first_installment = fields.Boolean(default=True)
-    doctor_comment = fields.Text(string='Doctor Comment')
-    result = fields.Char(string='Result ')
-    result_data = fields.Date(string='Result Date ')
-    doctor_name = fields.Many2one('res.users', 'Doctor Name ',  default=lambda self: self.env.user)
+    doctor_comment = fields.Text(string='Doctor Comment', readonly=True)
+    result = fields.Char(string='Result ', readonly=True)
+    result_data = fields.Char(string='Result Date ', readonly=True)
+    doctor_name = fields.Char(string='Doctor Name ',  readonly=True)
+
+
 
     @api.depends('type_acceptance')
     def _compute_fees(self):
@@ -76,12 +83,91 @@ class RegistrarOffices(models.Model):
                     self.total_received = fees.foreigners_study
                     self.register_fees = fees.foriegn_register_fees
 
+        # Func to open wizard
 
-    
+    def send_student_clinic(self):
+        self.is_clinic = True
+        # 1- For Nursing
+        self.env['education.nursing'].create({
+            'name': self.name,
+            'gender': self.gender,
+            'dob': self.brath_day,
+            'email': self.email,
+            'nationality': self.nationality_id.name,
+            'religion': self.religion,
+            'program': self.program_id.name,
+            'patient_id': self.form_number,
+            'phone': self.student_mobile,
+            'hom': self.local,
+        })
 
+        # 2- For Eye
+        self.env['education.eye'].create({
+            'name': self.name,
+            'gender': self.gender,
+            'brath_day': self.brath_day,
+            'email': self.email,
+            'nationality': self.nationality_id.name,
+            'religion': self.religion,
+            'program': self.program_id.name,
+            'patient_id': self.form_number,
+            'phone': self.student_mobile,
+            'address': self.local,
+        })
 
+        # # 3- For Mouth
+        self.env['education.mouth'].create({
+             'name': self.name,
+             'gender': self.gender,
+             'dob': self.brath_day,
+             'email': self.email,
+             'nationality': self.nationality_id.name,
+             'religion': self.religion,
+             'program': self.program_id.name,
+             'patient_id': self.form_number,
+             'phone': self.student_mobile,
+        })
 
+        # # 4- For Physical
+        self.env['education.physical'].create({
+            'name': self.name,
+            'first': self.first_name,
+            'second': self.second_name,
+            'third': self.third_name,
+            'last': self.forth_name,
+            'gender': self.gender,
+            'dob': self.brath_day,
+            'email': self.email,
+            'nationality': self.nationality_id.name,
+            'religion': self.religion,
+            'program': self.program_id.name,
+            'patient_id': self.form_number,
+            'phone': self.student_mobile,
+        })
+        # 5- For Cicology
+        self.env['education.assessment'].create({
+            'name': self.name,
+            'gender': self.gender,
+            'dob': self.brath_day,
+            'nationality': self.nationality_id.name,
+            'religion': self.religion,
+            'program': self.program_id.name,
+            'patient_id': self.form_number,
+            'social': self.social_status,
+        })
 
+        # # 6- For Laboratory
+        self.env['education.laboratory'].create({
+            'name': self.name,
+            'gender': self.gender,
+            'dob': self.brath_day,
+            'email': self.email,
+            'nationality': self.nationality_id.name,
+            'religion': self.religion,
+            'program': self.program_id.name,
+            'patient_id': self.form_number,
+            'phone': self.student_mobile,
+        })
 
     def create_student_user(self):
         pass

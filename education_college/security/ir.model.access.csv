@@ -6,7 +6,7 @@ access_education_student_registrar_admin,education.student.registrar.admin,model
 access_education_student_registrar_system_admin,education.student.registrar.system.admin,model_student_registrar,groups_college_system_admin,1,1,1,1
 
 access_education_type_admission_user,education.type.admission.type.admission.user,model_type_admission,groups_college_user,1,0,0,0
-access_education_type_admission_assistant,education.type.admission.type.admission.assistant,model_type_admission,groups_college_assistant,1,0,0,0
+access_education_type_admission_assistant,education.type.admission.type.admission.assistant,model_type_admission,groups_college_assistant,0,0,0,0
 access_education_type_admission_admin,education.type.admission.type.admission.admin,model_type_admission,groups_college_admin,1,1,1,0
 access_education_type_admission_system_admin,education.type.admission.type.admission.system.admin,model_type_admission,groups_college_system_admin,1,1,1,1
 
@@ -46,41 +46,41 @@ access_education_revenue_revenue_admin,education.revenue.revenue.admin,model_rev
 access_education_revenue_revenue_system_admin,education.revenue.revenue.system.admin,model_revenue_revenue,groups_college_system_admin,1,1,1,1
 
 access_education_college_user,education.college.user,model_college_college,groups_college_user,1,0,0,0
-access_education_college_assistant,education.college.assistant,model_college_college,groups_college_assistant,1,0,0,0
+access_education_college_assistant,education.college.assistant,model_college_college,groups_college_assistant,0,0,0,0
 access_education_college_admin,education.college.admin,model_college_college,groups_college_admin,1,1,1,0
 access_education_college_system_admin,education.college.system.admin,model_college_college,groups_college_system_admin,1,1,1,1
 
 access_education_program_user,education.program.user,model_program_program,groups_college_user,1,0,0,0
-access_education_program_assistant,education.program.assistant,model_program_program,groups_college_assistant,1,0,0,0
+access_education_program_assistant,education.program.assistant,model_program_program,groups_college_assistant,0,0,0,0
 access_education_program_admin,education.program.admin,model_program_program,groups_college_admin,1,1,1,0
 access_education_program_system_admin,education.program.system.admin,model_program_program,groups_college_system_admin,1,1,1,1
 
 access_education_batch_user,education.batch.user,model_batch_batch,groups_college_user,1,0,0,0
-access_education_batch_assistant,education.batch.assistant,model_batch_batch,groups_college_assistant,1,0,0,0
+access_education_batch_assistant,education.batch.assistant,model_batch_batch,groups_college_assistant,0,0,0,0
 access_education_batch_admin,education.batch.admin,model_batch_batch,groups_college_admin,1,1,1,0
 access_education_batch_system_admin,education.batch.system.admin,model_batch_batch,groups_college_system_admin,1,1,1,1
 
 access_education_semester_user,education.semester.semester.user,model_semester_semester,groups_college_user,1,0,0,0
-access_education_semester_assistant,education.semester.semester.assistant,model_semester_semester,groups_college_assistant,1,0,0,0
+access_education_semester_assistant,education.semester.semester.assistant,model_semester_semester,groups_college_assistant,0,0,0,0
 access_education_semester_admin,education.semester.semester.admin,model_semester_semester,groups_college_admin,1,1,1,0
 access_education_semester_system_admin,education.semester.semester.system.admin,model_semester_semester,groups_college_system_admin,1,1,1,1
 
 access_education_level_user,education.level.level.user,model_level_level,groups_college_user,1,0,0,0
-access_education_level_assistant,education.level.level.assistant,model_level_level,groups_college_assistant,1,0,0,0
+access_education_level_assistant,education.level.level.assistant,model_level_level,groups_college_assistant,0,0,0,0
 access_education_level_admin,education.level.level.admin,model_level_level,groups_college_admin,1,1,1,0
 access_education_level_system_admin,education.level.level.system.admin,model_level_level,groups_college_system_admin,1,1,1,1
 
 access_education_specialization_user,education.specialization.specialization.user,model_specialization_specialization,groups_college_user,1,0,0,0
-access_education_specialization_assistant,education.specialization.specialization.assistant,model_specialization_specialization,groups_college_assistant,1,0,0,0
+access_education_specialization_assistant,education.specialization.specialization.assistant,model_specialization_specialization,groups_college_assistant,0,0,0,0
 access_education_specialization_admin,education.specialization.specialization.admin,model_specialization_specialization,groups_college_admin,1,1,1,0
 access_education_specialization_system_admin,education.specialization.specialization.system.admin,model_specialization_specialization,groups_college_system_admin,1,1,1,
 
 access_education_form_health_user,education.form.health.user,model_form_health,groups_college_user,1,0,0,0
 access_education_form_health_assistant,education.form.health.assistant,model_form_health,groups_college_assistant,1,1,1,0
-access_education_form_health_admin,education.form.health.admin,model_form_health,groups_college_admin,1,1,1,0
+access_education_form_health_admin,education.form.health.admin,model_form_health,groups_college_admin,0,0,0,0
 access_education_form_health_system_admin,education.form.health.system.admin,model_form_health,groups_college_system_admin,1,1,1,1
 
 access_education_form_resignation_user,education.form.resignation.user,model_form_resignation,groups_college_user,1,0,0,0
 access_education_form_resignation_assistant,education.form.resignation.assistant,model_form_resignation,groups_college_assistant,1,1,1,0
-access_education_form_resignation_admin,education.form.resignation.admin,model_form_resignation,groups_college_admin,1,1,1,0
+access_education_form_resignation_admin,education.form.resignation.admin,model_form_resignation,groups_college_admin,0,0,0,0
 access_education_form_resignation_system_admin,education.form.resignation.system.admin,model_form_resignation,groups_college_system_admin,1,1,1,1

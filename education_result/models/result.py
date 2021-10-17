@@ -24,77 +24,85 @@ class Result(models.Model):
 
     def contract_close(self):
         max_degree = max(self.degree_line.filtered(lambda r: r.total).mapped("total"))
-        if max_degree >= 80:
-            num = round((max_degree - 50)/6)
+        if max_degree >= 80 and max_degree <= 100:
+            num = round((max_degree - 50) / 6)
             a = 50
-            y = a + num
-            for rec in self.degree_line:
-                if rec.total <= 49 :
-                    rec.grad = "F"
-                    y = y - 1
-                if rec.total >= 50 :
-                    rec.grad = "C"
-                    b = a + num
-                if rec.total >= 55 :
-                    rec.grad = "C+"
-                    c = b + num
-                if rec.total >= 60 :
-                    rec.grad = "B"
-                    d = c + num
-                if rec.total >= 65 :
-                    rec.grad = "B+"
-                    e = d + num
-                if rec.total >= 75 :
-                    rec.grad = "A"
-                    f = e + num
-                if rec.total >= 80 :
-                    rec.grad = "A+"
+            b = a + num
+            c = b + num
+            d = c + num
+            e = d + num
+            f = e + num
 
-
-
-        if max_degree >= 70 and max_degree < 80:
-            num = round((max_degree - 50)/5)
-            a = 50
-            y = a + num
-            for rec in self.degree_line:
-                if rec.total <= 49 :
-                    rec.grad = "F"
-                    y = y - 1
-                if rec.total >= 50 :
-                    rec.grad = "C"
-                    b = a + num
-                if rec.total >= 54 :
-                    rec.grad = "C+"
-                    c = b + num
-                if rec.total >= 59 :
-                    rec.grad = "B"
-                    d = c + num
-                if rec.total >= 64 :
-                    rec.grad = "B+"
-                    e = d + num
-                if rec.total >= 70 :
-                    rec.grad = "A"
-
-
-        if max_degree < 70:
-            num = round((max_degree - 50) / 4)
-            a = 50
-            y = a + num
             for rec in self.degree_line:
                 if rec.total <= 49:
                     rec.grad = "F"
-                    y = y - 1
-                if rec.total >= 50:
+                if rec.total >= 50 and rec.total <= 50+num-1:
                     rec.grad = "C"
                     b = a + num
-                if rec.total >= 53:
+                if rec.total >= b and rec.total <= b+num-1:
                     rec.grad = "C+"
                     c = b + num
-                if rec.total >= 58:
+                if rec.total >= c and rec.total <= c+num-1:
                     rec.grad = "B"
                     d = c + num
-                if rec.total >= 60:
+                if rec.total >= d and rec.total <= d+num-1:
                     rec.grad = "B+"
+                    e = d + num
+                if rec.total >= e and rec.total <= e+num-1:
+                    rec.grad = "A"
+                    f = e + num
+                if rec.total >= f and rec.total <= 100:
+                    rec.grad = "A+"
+
+
+        if max_degree >= 70 and max_degree < 80:
+           num = round((max_degree - 50)/5)
+           a = 50
+           b = a + num
+           c = b + num
+           d = c + num
+           e = d + num
+           for rec in self.degree_line:
+               if rec.total <= 49 :
+                    rec.grad = "F"
+               if rec.total >= 50 and rec.total <= a+num-1 :
+                   rec.grad = "C"
+                   b = a + num
+               if rec.total >= b and rec.total <= b+num-1 :
+                   rec.grad = "C+"
+                   c = b + num
+               if rec.total >= c and rec.total <= c+num-1 :
+                   rec.grad = "B"
+                   d = c + num
+               if rec.total >= d and rec.total <= d+num-1 :
+                   rec.grad = "B+"
+                   e = d + num
+               if rec.total >= e and rec.total <= 100 :
+                   rec.grad = "A"
+
+        if max_degree < 70:
+           num = round((max_degree - 50) / 4)
+           a = 50
+           b = a + num
+           c = b + num
+           d = c + num
+           for rec in self.degree_line:
+                if rec.total <= 49:
+                    rec.grad = "F"
+                if rec.total >= 50 and rec.total <= a+num-1:
+                    rec.grad = "C"
+                    b = a + num
+                if rec.total >= b and rec.total <= b+num-1:
+                    rec.grad = "C+"
+                    c = b + num
+                if rec.total >= c and rec.total <= c+num-1:
+                    rec.grad = "B"
+                    d = c + num
+                if rec.total >= d and rec.total <= 100:
+                    rec.grad = "B+"
+
+
+
 
 
     def contract_draft(self):

@@ -1,0 +1,232 @@
+<odoo>
+
+  <!-- startr tree viwe for lap -->
+<record model="ir.ui.view" id="physical_view_id">
+    <field name="name">education.physical.form</field>
+    <field name="model">education.physical</field>
+    <field name="priority" eval="16"/>
+    <field name="arch" type="xml">
+    <form string="Student Health Service" create="false">
+
+         <header>
+
+<!--            -->
+
+
+             <button  class="oe_highlight" type="action" name="%(education_clinic.create_clinic_wizard)d"
+                       context="{'default_student_ids':active_id}" string="Create Clinic Report"/>
+
+              <button  class="oe_highlight" type="action" name="%(education_clinic.report_physical)d"
+                        string="Print"/>
+
+<!--        -->
+
+        </header>
+      
+        <sheet>
+
+          <!--       header     -->
+                    <div class="row navbar navbar-expand-sm  navbar-dark" style="border-radius: 10px;
+    background-color: #187ebf;   color: white;">
+                        <div class="col-sm">
+                            <img src="napata_register/static/description/logo.jpeg" class="img-thumbnail"
+                                 style="height:80px;width:120px"/>
+                        </div>
+
+                        <div class="col-sm   text-center">
+                            <h1>
+                                <p>
+                                    <spane>كليــــــــــــــــة نبتـــــــــة</spane>
+                                    <br/>
+                                    <spane>NAPATA COLLEGE</spane>
+                                </p>
+                            </h1>
+                        </div>
+                        <div class="col-sm" style="  text-align:right">
+                            <h3>
+                                <p style="color: white; text-align: left;margin-left: 116px;">
+                                    <spane>Alreydh-Khartoum/Sudan</spane>
+                                    <br/>
+                                    <spane>Tel :+249112203333</spane>
+                                    <br/>
+                                    <spane>Email:info@napata.net</spane>
+                                    <br/>
+                                    <spane>www:napata.net</spane>
+                                </p>
+                            </h3>
+
+                        </div>
+                    </div>
+                    <div class="text-center" style="padding-bottom: 35px; padding-top: 40px;     color: black;">
+                        <h2>
+                          <span>Medical Examination</span>   
+                                                       
+                        </h2>
+                      </div>
+                  
+
+
+                    <!--            header-->
+
+
+
+     <group colspan="2" col="4">
+         <field name="date"/>
+        <field name="patient_id"/>
+      </group>
+            
+            <group string="Student Information">
+                        <table style="margin-left:160px;">
+                                    <tr>
+                                        <td style="padding-right:10px;">
+                                            <field name="name"/>
+                                        </td>
+                                    </tr>
+                        </table>
+                  </group>
+
+                        <group colspan="7" col="4" name="main">
+                            <field name="email"/>
+                            <field name="gender"/>
+                            <field name="phone" />
+                            <field name="nationality"/>
+                            <field name="religion"/>
+                            <field name="program"/>
+                            <field name="dob"/>
+                         </group>
+
+            <notebook>
+
+                <page  string="PHYSICAL EXAMINATION">
+
+                        <group colspan="2" col="4"  string="General">
+                          <field name="appearance"/>
+                          <field name="constitution"/>
+                 </group>
+
+            <group  string="Sclap">
+            </group>
+                   <group  col="2" string="Normal">
+                            <field name="abnormal"/>
+                        </group>
+
+            <group col="2" colspan="4" string="Cervical lymph Nodes">
+
+                <field name="normal_one"/>
+                <field name="enlarge"/>
+            </group>
+                    <group string="Ears" colspan="3" col="6">
+                            <field name="normal_two"/>
+                            <field name="external"/>
+                            <field name="media"/>
+                    </group>
+
+                    <group col="4" colspan="4">
+                            <field name="hearing"/>
+                            <field name="nose"/>
+                    </group>
+
+                    <group string="Chest" >
+                            <field name="general_one"/>
+                    </group>
+                    <group string="Lungs" col="4" colspan="4">
+                            <field name="clear"/>
+                            <field name="abnormality"/>
+                    </group>
+
+                    <group string="Heart"  col="4" colspan="4" >
+                            <field name="normal_th"/>
+                            <field name="abnormal_th"/>
+                    </group>
+                    <group string="Abdomen" >
+                            <field name="general_fo"/>
+                    </group>
+                    <group string="Liver" col="4" colspan="4" >
+                            <field name="normal_fo"/>
+                            <field name="paipable"/>
+                    </group>
+                </page>
+
+                        <page string="B.C.M">
+
+                        <group string="Spleen" col="4" colspan="4" >
+                            <field name="normal_no"/>
+                            <field name="paip"/>
+                            <field name="other"/>
+                            <field name="fluid"/>
+                            <field name="hernia"/>
+                            <field name="genitalia"/>
+                            <field name="lower"/>
+                        </group>
+                </page>
+
+                <page string="G.N.S">
+
+                        <group  col="4" colspan="4" >
+                         <field name="intell"/>
+                         <field name="speech"/>
+                         <field name="fungi"/>
+                         <field name="cranial"/>
+                         <field name="motor"/>
+                         <field name="sensory"/>
+                         <field name="reflexes"/>        
+                         <field name="skin"/>
+                         <field name="comment"/>
+                         <field name="upper"/>
+                         <field name="thyroid"/>    
+                        </group>
+                    <group string="Trachea" col="4" colspan="4" >
+                         <field name="central"/>
+                         <field name="deviated"/>
+                     </group>
+                </page>
+
+                        <page string="Doctor Results">
+                     
+                     <group col="2">
+                         <field name="assessment"/>
+                         <field name="diagonis"/>
+                     </group>
+
+                     <group>
+                         <field name="doctor_name" readonly="1"/>
+                     </group>
+                        </page>
+            </notebook>
+                        
+
+
+               </sheet>
+
+
+    </form>
+    </field>
+</record>
+     <!-- start form viwe from lap Info -->
+  <record model="ir.ui.view" id="physical_tree_view">
+            <field name="name">physical.tree</field>
+            <field name="model">education.physical</field>
+            <field name="arch" type="xml">
+            <tree string="Patient tree">
+                <field name="name"/>
+                <field name="program"/>
+                <field name="dob"/>
+                <field name="phone"/>
+                          
+ </tree>
+            </field>
+    </record>
+<!-- end of form viwe from lab Info -->
+
+      <record model="ir.actions.act_window" id="physical_list_action">
+            <field name="name">Physical Clinic</field>
+            <field name="res_model">education.physical</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create the first patient
+                </p>
+            </field>
+        </record>
+
+</odoo>
+ 

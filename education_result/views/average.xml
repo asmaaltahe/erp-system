@@ -30,8 +30,6 @@
                             <field name="semester_average"/>
                             <field name="cumulative_average"/>
                             <field name="result"/>
-<!--                            <field name="supp"/>-->
-<!--                            <field name="sub"/>-->
                             <field name="decision"/>
                         </tree>
                     </field>
